@@ -1,5 +1,6 @@
 # Author: Yue (Gary) Zhang
-# This scripts take inputs as a list of files with common columns, concatenated them into a overarching table and save it as a csv
+# This scripts take inputs as a list of files with common columns, bind them into a overarching table and save it as a csv
+# for example: bind file1 with col1 col2 and file2 with col1 col2 into fileAll using col1 as the anchor will generate fileAll with col1 file1__col2 file2__col2 
 # in the command line, simply run:
 # Rscript bindcolumns.R 'path' 'pattern' 'filetype' 'cindex' 'cinterest' 'outfname'
 
@@ -7,7 +8,7 @@
 args <- commandArgs(trailingOnly = TRUE)
 # print the help message:
 if (length(args) == 1 & args[[1]] == '-h') {
-  cat("This scripts take inputs as a list of files with common columns, concatenated them into a overarching table and save it as a csv. \n
+  cat("This scripts take inputs as a list of files with common columns, bind them into a overarching table and save it as a csv. \n For example: it can bind file1 with col1 col2 and file2 with col1 col2 into fileAll using col1 as the anchor. It generates fileAll with col1 file1__col2 file2__col2 \n
       In the command line, simply run: \n
       Rscript bindcolumns.R 'PATH' 'PATTERN' 'FILETYPE' 'CINDEX' 'CINTEREST' 'OUTFNAME' \n
       where PATH is the directory of input files \n
