@@ -61,7 +61,7 @@ if (length(args) == 1 & args[[1]] == '-h') {
   
   for (i in 1:length(flist)) {
     fname = flist[i]
-    df = read.csv(fname, sep = separator, header = T, comment.char = '#')
+    df = read.csv(paste0(path,'/',fname), sep = separator, header = T, comment.char = '#')
     df.s = df[,c(cindex,cinterest)]
     names(df.s)[2:length(names(df.s))] = paste0(fname,'__',names(df.s)[2:length(names(df.s))])
     if (i == 1) {
