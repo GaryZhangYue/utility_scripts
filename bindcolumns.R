@@ -1,5 +1,5 @@
 # Author: Yue (Gary) Zhang
-# This scripts take inputs as a list of files with common columns, bind them into a overarching table and save it as a csv
+# This scripts take inputs as a list of files, bind columns of interest using an anchor column and save it  into a overarching a csv
 # for example: bind file1 with col1 col2 and file2 with col1 col2 into fileAll using col1 as the anchor will generate fileAll with col1 file1__col2 file2__col2 
 # in the command line, simply run:
 # Rscript bindcolumns.R 'path' 'pattern' 'filetype' 'cindex' 'cinterest' 'outfname'
@@ -8,15 +8,18 @@
 args <- commandArgs(trailingOnly = TRUE)
 # print the help message:
 if (length(args) == 1 & args[[1]] == '-h') {
-  cat("This scripts take inputs as a list of files with common columns, bind them into a overarching table and save it as a csv. \n For example: it can bind file1 with col1 col2 and file2 with col1 col2 into fileAll using col1 as the anchor. It generates fileAll with col1 file1__col2 file2__col2 \n
-      In the command line, simply run: \n
-      Rscript bindcolumns.R 'PATH' 'PATTERN' 'FILETYPE' 'CINDEX' 'CINTEREST' 'OUTFNAME' \n
-      where PATH is the directory of input files \n
-            PATTERN is the common pattern of input files (e.g., if you have file1.tsv, file2.txt, file3_xx.txt, somethingelse.txt, set pattern == 'file' will grab columns from file1.tsv, file2.tsv, file3_xx.txt) \n
-            FILETYPE is the separator when reading the dfs; only tsv and csv are supported \n
-            CINDEX is the name of the column that merging is based on \n
-            CINTEREST is the name of the columns to be included \n
-            OUTFNAME is the name of the merged table")
+  cat("
+This scripts take inputs as a list of files, bind columns of interest using an anchor column and save it into an overarching csv file. \n 
+For example: if you have X files: file1 with col1, col2 ... colN and file2 with col1, col2 ... colM and so on, and you wanna grab col2 and col3 from each file, merge them into fileALL using col1 as an anchor, in the command line, simply run:
+
+Rscript bindcolumns.R 'DIR_PATH' 'COMMON_PATTERN' 'FILETYPE' 'CINDEX' 'CINTEREST' 'OUTFNAME'
+
+  where PATH is the directory of input files
+  PATTERN is the common pattern of input files ('file' in this example)
+  FILETYPE is the separator when reading the dfs; only tsv and csv are supported
+  CINDEX is the name of the column that merging is based on ('col1' in this example)
+  CINTEREST is the name of the columns to be included ('col2' in this example)
+  OUTFNAME is the name of the merged table \n")
 } else{
   # required input
   path = args[[1]] # directory of input files
